@@ -1,0 +1,8 @@
+.idea
+target
+src/main/webapp
+src/test
+mvnw
+mvnw.cmd
+weather_rest_task.iml
+help.md
