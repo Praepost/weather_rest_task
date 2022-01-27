@@ -18,7 +18,7 @@ public class ParseFromYandex {
 
     @Autowired
     private RestTemplate restTemplate;
-    private final String URL = "https://api.weather.yandex.ru/v2/informers?lat=59&lon=30";
+    private final String URL = "https://api.weather.yandex.ru/v2/informers?lat=59.93909836&lon=30.31587601";
 
     public ParseFromYandex(){
 
@@ -36,9 +36,8 @@ public class ParseFromYandex {
         JSONObject weatherJsonObject = new JSONObject(responseEntity.getBody());
 
         JSONObject factArray = (JSONObject) weatherJsonObject.get("fact");
-        JSONObject forecastArray = (JSONObject) weatherJsonObject.get("forecast");
         Integer temperature = (Integer) factArray.get("temp");
-        Integer time = (Integer) forecastArray.get("date_ts");
+        Integer time = (Integer) factArray.get("obs_time");
 
         return new Weather(new Date(time*1000L), temperature);
     }
