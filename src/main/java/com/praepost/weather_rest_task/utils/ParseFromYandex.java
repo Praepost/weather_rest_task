@@ -19,7 +19,7 @@ import java.util.Map;
 public class ParseFromYandex {
 
     private RestTemplate restTemplate = new RestTemplate();
-    private final String URL = "https://api.weather.yandex.ru/v2/informers?lat=59&lon=30";
+    private final String URL = "https://api.weather.yandex.ru/v2/informers?lat=59.93909836&lon=30.31587601";
 
     public ParseFromYandex(){
 
@@ -39,9 +39,8 @@ public class ParseFromYandex {
         Map weatherJsonObject = mapper.readValue(responseEntity.getBody(), Map.class);
 
         Map factArray = (Map) weatherJsonObject.get("fact");
-        Map forecastArray = (Map) weatherJsonObject.get("forecast");
         Integer temperature = (Integer) factArray.get("temp");
-        Integer time = (Integer) forecastArray.get("date_ts");
+        Integer time = (Integer) factArray.get("obs_time");
 
         return new Weather(new Date(time*1000L), temperature);
     }
