@@ -8,5 +8,5 @@ import java.sql.Date;
 public interface WeatherService {
 
     public void saveWeather(Weather weather);
-    public Weather getWeather(Date currentDate);
+    public Weather getWeather(Date date);
 }
